@@ -7,6 +7,16 @@ public class Booster : Piece
     [SerializeField]
     private float boostStrength = 1f;
 
+    [SerializeField]
+    private ParticleSystem flameSystem;
+
+    protected new void Start()
+    {
+        base.Start();
+        var main = flameSystem.main;
+        main.startSize = main.startSize.constant * transform.lossyScale.x / baseScale;
+    }
+
     private void FixedUpdate()
     {
         if (rootRb == null)
@@ -14,13 +24,18 @@ public class Booster : Piece
             return;
         }
 
-        // Forward pushiness
+        bool flame = false;
 
+        // Forward and backward pushiness
         float angleBetween = Quaternion.Angle(root.transform.rotation, transform.rotation);
         float cos = Mathf.Cos(Mathf.Deg2Rad * angleBetween);
         float boostAmount = InputHandler.VerticalMovement * boostStrength * cos;
 
-        BoostMassaged(boostAmount);
+        if (boostAmount > 0.05)
+        {
+            BoostMassaged(boostAmount);
+            flame = true;
+        }
 
         // Torquiness
 
@@ -32,7 +47,11 @@ public class Booster : Piece
         if (Mathf.Abs(cross) > 0.05 && Mathf.Abs(horizontalMovement) > 0.05f && Mathf.Sign(horizontalMovement) == sign)
         {
             Boost(0.5f * boostStrength * Mathf.Abs(horizontalMovement));
+            flame = true;
         }
+
+        var emission = flameSystem.emission;
+        emission.enabled = flame;
     }
 
     private void BoostMassaged(float amount)
