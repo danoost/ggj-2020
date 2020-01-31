@@ -11,7 +11,6 @@ public class Booster : Piece
     {
         if (rootRb == null)
         {
-            Debug.Log("AAAAAAA");
             return;
         }
 
@@ -38,11 +37,8 @@ public class Booster : Piece
 
     private void BoostMassaged(float amount)
     {
-        Debug.Log(amount);
         if (amount < 0) return;
-        Debug.Log(amount * ((root.transform.forward * Mathf.Sign(InputHandler.VerticalMovement)) + transform.forward) / 2);
-        Debug.Log(transform.forward);
-        Debug.Log(root.transform.forward);
+        amount *= transform.lossyScale.x / baseScale;
         rootRb.AddForceAtPosition(amount * ((root.transform.forward * Mathf.Sign(InputHandler.VerticalMovement)) + transform.forward) / 2, transform.position);
     }
 
