@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3529131133215956773}
   - component: {fileID: 3979969459030241530}
   - component: {fileID: 5248612341169836940}
+  - component: {fileID: 5697990546751470701}
   m_Layer: 0
   m_Name: Booster
   m_TagString: Piece
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 072386c4a7dce144da63744ca7bd6f33, type: 3}
+  - {fileID: 2100000, guid: 39d237c547bc1aa45bcdb848b7fc589c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,4 +124,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9737932fa902b4d4bb9e4b12761afe4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseScale: 0.3
+  scaleMinFactor: 0.5
+  scaleMaxFactor: 2
+  randomiseRotation: 1
   boostStrength: 1
+--- !u!114 &5697990546751470701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184609690224282668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  randomiseHue: 1
