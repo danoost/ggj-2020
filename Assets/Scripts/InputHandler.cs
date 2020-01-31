@@ -4,26 +4,9 @@ using UnityEngine;
 
 public static class InputHandler
 {
-    public static Vector3 MovementDirection
-    {
-        get
-        {
-            Vector3 result = new Vector3(
-                Input.GetAxis("Horizontal"),
-                0,
-                Input.GetAxis("Vertical")
-            );
+    public static float HorizontalMovement => Input.GetAxis("Horizontal");
 
-            if (result.sqrMagnitude > 0.05)
-            {
-                return result.normalized;
-            }
-            else
-            {
-                return Vector3.zero;
-            }
-        }
-    }
+    public static float VerticalMovement => Input.GetAxis("Vertical");
 
     public static bool IsInteracting
     {
