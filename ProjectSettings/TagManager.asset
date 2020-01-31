@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CommandCentre
   - Piece
+  - Damaging
   layers:
   - Default
   - TransparentFX
