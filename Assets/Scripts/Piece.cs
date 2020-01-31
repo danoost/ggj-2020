@@ -6,9 +6,9 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     protected GameObject root;
-    protected Rigidbody rootRb;
-    protected Rigidbody selfRb;
-    private Rigidbody selfRbBackup;
+    protected Rigidbody2D rootRb;
+    protected Rigidbody2D selfRb;
+    private Rigidbody2D selfRbBackup;
 
     [SerializeField]
     protected float baseScale = 0.3f;
@@ -21,7 +21,7 @@ public class Piece : MonoBehaviour
 
     protected void Start()
     {
-        selfRb = GetComponent<Rigidbody>();
+        selfRb = GetComponent<Rigidbody2D>();
 
         if (transform.parent != null && transform.parent.CompareTag("CommandCentre"))
         {
@@ -33,7 +33,7 @@ public class Piece : MonoBehaviour
             // Scale and rotation randomisation
             transform.localScale = Vector3.one * baseScale * Random.Range(scaleMinFactor, scaleMaxFactor);
             if (randomiseRotation)
-                transform.rotation = Quaternion.Euler(0, Random.Range(-180, 180), 0);
+                transform.rotation = Quaternion.Euler(0, 0, Random.Range(-180, 180));
         }
     }
 
@@ -45,22 +45,31 @@ public class Piece : MonoBehaviour
     private void SetRoot(GameObject newRoot)
     {
         root = newRoot;
-        rootRb = root.GetComponent<Rigidbody>();
+        rootRb = root.GetComponent<Rigidbody2D>();
         selfRbBackup = new Rigidbody().GetCopyOf(selfRb);
         Destroy(selfRb);
-        transform.parent = newRoot.transform;
     }
 
-    // TODO Detach
-
-    private void OnCollisionEnter(Collision collision)
+    public void Detach()
     {
-        if (root == null && 
-            (collision.collider.CompareTag("CommandCentre") 
+        root = null;
+        rootRb = null;
+        transform.parent = null;
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<Piece>().Detach();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (root == null &&
+            (collision.collider.CompareTag("CommandCentre")
             || collision.collider.CompareTag("Piece"))
             )
         {
             SetRoot(FindRoot(collision.collider.gameObject));
+            transform.parent = collision.collider.transform;
         }
     }
 }

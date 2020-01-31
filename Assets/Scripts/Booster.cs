@@ -24,8 +24,7 @@ public class Booster : Piece
 
         // Torquiness
 
-        float cross = Vector3.Cross((transform.position - root.transform.position).normalized, transform.forward).y;
-        //Debug.Log(cross);
+        float cross = Vector3.Cross((transform.position - root.transform.position).normalized, transform.up).z;
         float sign = Mathf.Sign(cross);
 
         float horizontalMovement = InputHandler.HorizontalMovement;
@@ -39,12 +38,12 @@ public class Booster : Piece
     {
         if (amount < 0) return;
         amount *= transform.lossyScale.x / baseScale;
-        rootRb.AddForceAtPosition(amount * ((root.transform.forward * Mathf.Sign(InputHandler.VerticalMovement)) + transform.forward) / 2, transform.position);
+        rootRb.AddForceAtPosition(amount * ((root.transform.up * Mathf.Sign(InputHandler.VerticalMovement)) + transform.up) / 2, transform.position);
     }
 
     private void Boost(float amount)
     {
         if (amount < 0) return;
-        rootRb.AddForceAtPosition(amount * transform.forward, transform.position);
+        rootRb.AddForceAtPosition(amount * -transform.up, transform.position);
     }
 }
