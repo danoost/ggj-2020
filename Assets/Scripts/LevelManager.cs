@@ -81,11 +81,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    internal void SpawnPlayer(NewPlayerInfo pi, int playerIndex)
+    internal void SpawnPlayer(NewPlayerInfo pi, int playerIndex, int totalPlayers)
     {
         GameObject newPlayer = Instantiate(playerPrefab, playerPositions[playerIndex], Quaternion.identity, null);
         newPlayer.GetComponent<PlayerVisual>().SetColor(pi.color);
         newPlayer.GetComponent<PlayerController>().SetDevice(pi.device);
+        newPlayer.GetComponent<PlayerCamera>().SetConfig(totalPlayers, playerIndex);
     }
 
     private void CreateObject(float totalWeight, Vector2 position)

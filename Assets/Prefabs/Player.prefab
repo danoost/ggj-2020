@@ -14284,7 +14284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4276199658765709904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -25}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8889362011152213097}
@@ -14395,7 +14395,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 39d237c547bc1aa45bcdb848b7fc589c, type: 2}
+  - {fileID: 2100000, guid: 52ca893795f9490419e5bcba8ea2594a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14563,7 +14563,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 39d237c547bc1aa45bcdb848b7fc589c, type: 2}
+  - {fileID: 2100000, guid: 52ca893795f9490419e5bcba8ea2594a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14731,7 +14731,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 39d237c547bc1aa45bcdb848b7fc589c, type: 2}
+  - {fileID: 2100000, guid: 52ca893795f9490419e5bcba8ea2594a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14854,6 +14854,7 @@ GameObject:
   - component: {fileID: 6122585156356879643}
   - component: {fileID: 3260014484440348869}
   - component: {fileID: 357623238064789326}
+  - component: {fileID: 2868837728229109343}
   m_Layer: 0
   m_Name: Player
   m_TagString: CommandCentre
@@ -15018,3 +15019,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asset: {fileID: -944628639613478452, guid: ec60d46c36e35bb41b46d4f4727ca58b, type: 3}
+  invertRotation: 1
+--- !u!114 &2868837728229109343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889362011152213096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48fd9379a3b96b04ba8507647e459008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCamera: {fileID: 1387122718519860745}
+  rotate: 0
