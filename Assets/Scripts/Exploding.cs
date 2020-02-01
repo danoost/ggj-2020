@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Exploding : MonoBehaviour
 {
-    [SerializeField]
-    private int damage = 40;
+    public int Damage { get; set; } = 40;
 
     [SerializeField]
     private float radius = 0.5f;
@@ -20,7 +19,7 @@ public class Exploding : MonoBehaviour
     {
         if (collision.collider.CompareTag("Piece") || collision.collider.CompareTag("CommandCentre"))
         {
-            Explode(damage);
+            Explode(Damage);
             Destroy(gameObject);
         }
     }
@@ -41,8 +40,14 @@ public class Exploding : MonoBehaviour
                 if (!hit.collider.CompareTag("Damaging"))
                 {
                     Vector2 difference = hit.collider.ClosestPoint(transform.position) - (Vector2)transform.position;
-                    hit.collider.attachedRigidbody.AddForceAtPosition(difference * pushForce, transform.position);
-                    hit.collider.GetComponent<Damageable>()?.DealDamage(damageAmount);
+                    if (hit.collider.TryGetComponent(out Damageable d))
+                    {
+                        d.DealDamage(damageAmount);
+                    }
+                    if (hit.collider.attachedRigidbody != null)
+                    {
+                        hit.collider.attachedRigidbody.AddForceAtPosition(difference * pushForce, transform.position);
+                    }
                 }
             }
         }

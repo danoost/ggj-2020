@@ -46,7 +46,7 @@ public class Piece : MonoBehaviour
     {
         root = newRoot;
         rootRb = root.GetComponent<Rigidbody2D>();
-        selfRbBackup = new Rigidbody().GetCopyOf(selfRb);
+        selfRbBackup = new Rigidbody2D().GetCopyOf(selfRb);
         Destroy(selfRb);
     }
 
