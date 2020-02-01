@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public Color Color { get; private set; }
-    public float Index { get; private set; }
+    public int Index { get; private set; }
 
     void Start()
     {

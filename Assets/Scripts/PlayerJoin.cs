@@ -39,15 +39,17 @@ public class PlayerJoin : MonoBehaviour
 
     private void JoinPlayer(InputAction.CallbackContext context)
     {
-        if (GameFlowManager.instance.state != GameState.WAITING_FOR_PLAYERS || playersJoined.Count >= 4)
+        if (GameFlowManager.instance.state != GameState.WAITING_FOR_PLAYERS)
             return;
 
         InputDevice device = context.control.device;
-        if (playersJoined.TrueForAll(pi => pi.device != device))
+        if (playersJoined.TrueForAll(pi => pi.device != device) && playersJoined.Count < 4)
         {
             // New device! Create a player
-            playersJoined.Add(new NewPlayerInfo { device = device });
-            int index = playersJoined.Count - 1;
+            Debug.Log(playerColors.Length);
+            Debug.Log(playersJoined.Count);
+            int index = playersJoined.Count;
+            playersJoined.Add(new NewPlayerInfo { device = device, color = playerColors[index] });
             string hex = ColorUtility.ToHtmlStringRGB(playerColors[index]);
             string space = index == 0 ? "" : "<space=2em>";
             joinedText.SetText(joinedText.text + $"{space}<color=#{hex}>Player {numbers[index]}</color>");
