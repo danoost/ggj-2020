@@ -20,9 +20,7 @@ public class Booster : Piece
     private void FixedUpdate()
     {
         if (rootRb == null)
-        {
             return;
-        }
 
         bool flame = false;
 
@@ -38,7 +36,6 @@ public class Booster : Piece
         }
 
         // Torquiness
-
         float cross = Vector3.Cross((transform.position - root.transform.position).normalized, transform.forward).y;
         //Debug.Log(cross);
         float sign = Mathf.Sign(cross);
