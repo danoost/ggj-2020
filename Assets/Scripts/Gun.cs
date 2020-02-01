@@ -8,38 +8,33 @@ public class Gun : Piece
     private GameObject bullet;
 
     [SerializeField]
-    private int damage = 40;
-
-    [SerializeField]
-    private float shotsPerSecond = 1;
-
-    [SerializeField]
-    private float bulletSpeed = 5f;
-
-    [SerializeField]
     private float bulletLifetime = 20f;
 
     [SerializeField]
-    private float recoilForce = 10f;
+    private float baseBulletScale = 0.4f;
 
-    private Coroutine shootingCoroutine;
-    private bool isShooting = false;
+    [SerializeField]
+    private int baseDamage = 40;
 
-    private void FixedUpdate()
+    [SerializeField]
+    private float baseShotsPerSecond = 1.5f;
+
+    [SerializeField]
+    private float baseBulletSpeed = 5f;
+
+    [SerializeField]
+    private float baseRecoilForce = 10f;
+
+    float scaleModifier;
+
+    float inverseScaleModifier;
+
+    protected new void Start()
     {
-        if (shootingCoroutine == null)
-        {
-            shootingCoroutine = StartCoroutine(ShootLots());
-        }
-
-        if (!isShooting && InputHandler.IsInteracting)
-        {
-            isShooting = true;
-        }
-        if (isShooting && !InputHandler.IsInteracting)
-        {
-            isShooting = false;
-        }
+        base.Start();
+        StartCoroutine(ShootLots());
+        scaleModifier = transform.lossyScale.x / baseScale;
+        inverseScaleModifier = 1 / scaleModifier;
     }
 
     IEnumerator ShootLots()
@@ -50,23 +45,29 @@ public class Gun : Piece
             {
                 yield return new WaitUntil(() => root != null);
             }
-            if (!isShooting)
+            if (!InputHandler.IsInteracting)
             {
-                yield return new WaitUntil(() => isShooting);
+                yield return new WaitUntil(() => InputHandler.IsInteracting);
             }
             Shoot();
-            yield return new WaitForSeconds(1 / shotsPerSecond);
+            yield return new WaitForSeconds(1 / baseShotsPerSecond * scaleModifier);
         }
     }
 
     private void Shoot()
     {
-        Vector2 bulletSpawnPoint = transform.position + (transform.up * 0.7f);
+        Vector2 bulletSpawnPoint = transform.position + (transform.up * 2f * transform.lossyScale.x);
         GameObject newBullet = Instantiate(bullet, bulletSpawnPoint, transform.rotation);
-        newBullet.GetComponent<Exploding>().Damage = damage;
-        newBullet.GetComponent<Rigidbody2D>().velocity = newBullet.transform.up * bulletSpeed;
+
+        newBullet.transform.localScale = transform.lossyScale * baseBulletScale;
+
+        newBullet.GetComponent<Exploding>().Damage = (int)(baseDamage * scaleModifier);
+        newBullet.GetComponent<Exploding>().PushForceScale = scaleModifier;
+        newBullet.GetComponent<Rigidbody2D>().velocity = newBullet.transform.up * baseBulletSpeed * inverseScaleModifier;
         Destroy(newBullet, bulletLifetime);
 
-        rootRb.AddForceAtPosition(recoilForce * -transform.up, bulletSpawnPoint);
+        Debug.Log(newBullet.GetComponent<Exploding>().Damage);
+
+        rootRb.AddForceAtPosition(baseRecoilForce * -transform.up * scaleModifier, bulletSpawnPoint);
     }
 }

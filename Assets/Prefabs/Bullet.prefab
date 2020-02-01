@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.5
-  pushForce: 100
+  basePushForce: 0.001
 --- !u!50 &1581556017462987663
 Rigidbody2D:
   serializedVersion: 4

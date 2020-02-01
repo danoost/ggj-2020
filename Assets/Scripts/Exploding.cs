@@ -7,13 +7,15 @@ public class Exploding : MonoBehaviour
 {
     public int Damage { get; set; } = 40;
 
+    public float PushForceScale { get; set; } = 1f;
+
     [SerializeField]
     private float radius = 0.5f;
 
     [SerializeField]
-    private float pushForce = 100f;
+    private float basePushForce = 50f;
 
-    private int numberOfRays = 32;
+    private readonly int numberOfRays = 32;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -27,6 +29,8 @@ public class Exploding : MonoBehaviour
     public void Explode(int damageAmount)
     {
         float angleDifference = 2 * Mathf.PI / numberOfRays;
+
+        List<Damageable> haveDealtDamage = new List<Damageable>();
         foreach (float k in Enumerable.Range(0, numberOfRays))
         {
             float angle = k * angleDifference;
@@ -39,14 +43,18 @@ public class Exploding : MonoBehaviour
             {
                 if (!hit.collider.CompareTag("Damaging"))
                 {
-                    Vector2 difference = hit.collider.ClosestPoint(transform.position) - (Vector2)transform.position;
+                    Vector2 difference = (hit.collider.ClosestPoint(transform.position) - (Vector2)transform.position).normalized;
                     if (hit.collider.TryGetComponent(out Damageable d))
                     {
-                        d.DealDamage(damageAmount);
+                        if (!haveDealtDamage.Contains(d))
+                        {
+                            d.DealDamage(damageAmount);
+                            haveDealtDamage.Add(d);
+                        }
                     }
                     if (hit.collider.attachedRigidbody != null)
                     {
-                        hit.collider.attachedRigidbody.AddForceAtPosition(difference * pushForce, transform.position);
+                        hit.collider.attachedRigidbody.AddForceAtPosition(difference * basePushForce * PushForceScale, transform.position);
                     }
                 }
             }

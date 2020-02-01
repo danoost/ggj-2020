@@ -16,7 +16,7 @@ public class Damageable : MonoBehaviour
 
     public void DealDamage(int amount)
     {
-        Debug.Log("oof");
+        Debug.Log($"oof. {amount} damage, {currentHealth} -> {currentHealth - amount}");
         currentHealth -= amount;
         if (currentHealth < 0)
         {

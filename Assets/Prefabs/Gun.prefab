@@ -101,10 +101,12 @@ MonoBehaviour:
   scaleMaxFactor: 2
   randomiseRotation: 1
   bullet: {fileID: 1736897656283732312, guid: f3bf55fb9b608a14287949b0b79ad4fe, type: 3}
-  damage: 40
-  shotsPerSecond: 4
-  bulletSpeed: 5
-  bulletLifetime: 20
+  bulletLifetime: 5
+  baseBulletScale: 0.8
+  baseDamage: 40
+  baseShotsPerSecond: 1.5
+  baseBulletSpeed: 5
+  baseRecoilForce: 13
 --- !u!114 &7313004076661642441
 MonoBehaviour:
   m_ObjectHideFlags: 0
