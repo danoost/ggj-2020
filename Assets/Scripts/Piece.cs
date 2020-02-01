@@ -57,7 +57,10 @@ public class Piece : MonoBehaviour
         transform.parent = null;
         foreach (Transform child in transform)
         {
-            child.GetComponent<Piece>().Detach();
+            if (child.TryGetComponent(out Piece piece))
+            {
+                piece.Detach();
+            }
         }
     }
 
