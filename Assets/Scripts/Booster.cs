@@ -35,10 +35,10 @@ public class Booster : Piece
 
     private void FixedUpdate()
     {
+        bool flame = false;
+
         if (rootController == null)
             return;
-
-        bool flame = false;
 
         // Forward and backward pushiness
         float angleBetween = Quaternion.Angle(root.transform.rotation, transform.rotation);
@@ -58,7 +58,7 @@ public class Booster : Piece
         float horizontalMovement = rootController.Movement.x;
         if (Mathf.Abs(cross) > 0.05 && Mathf.Abs(horizontalMovement) > 0.05f && Mathf.Sign(horizontalMovement) == sign)
         {
-            Boost(0.5f * boostStrength * Mathf.Abs(horizontalMovement));
+            Boost(boostStrength * Mathf.Abs(horizontalMovement));
             flame = true;
         }
 

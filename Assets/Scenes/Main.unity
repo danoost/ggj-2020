@@ -785,9 +785,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 767859529}
-  winCanvas: {fileID: 0}
-  winText: {fileID: 0}
-  restartText: {fileID: 0}
+  winCanvas: {fileID: 2146482661}
+  winText: {fileID: 238474546}
+  restartText: {fileID: 1413014779}
   state: 0
 --- !u!1 &1169216775
 GameObject:

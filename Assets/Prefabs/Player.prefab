@@ -15170,9 +15170,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.5
-  m_AngularDrag: 0.5
+  m_Mass: 0.4
+  m_LinearDrag: 0.25
+  m_AngularDrag: 0.4
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -15207,11 +15207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2907c96fbd903e842b909d80b006e143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mats:
-  - {fileID: 2100000, guid: fceeaab4604d1104b978ebc6c00e0e22, type: 2}
-  - {fileID: 2100000, guid: d0ac74b6d94484040b2291f0c407717e, type: 2}
-  - {fileID: 2100000, guid: 45b1b2a9c51bd724eb300751170240fb, type: 2}
-  - {fileID: 2100000, guid: eafcf19dd9210d8479d9fee73b491d4f, type: 2}
   mr: {fileID: 747771653491145887}
 --- !u!114 &357623238064789326
 MonoBehaviour:
