@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private Vector2 dimensions;
+    [SerializeField] private int borderIterations = 5;
     [SerializeField] private float randomness = 2;
     [SerializeField] private float spacing = 5;
     [SerializeField] private int seed = 69;
@@ -84,16 +85,18 @@ public class LevelManager : MonoBehaviour
         weightList = new (float, GameObject)[] { (noneWeight, null), (boosterWeight, boosterPrefab), (gunWeight, gunPrefab), (asteroidWeight, asteroidPrefab) };
         float totalWeight = weightList.Sum(thing => thing.Item1);
 
-        for (int i = 0; i < dimensions.x / spacing; i++)
+        for (int i = -borderIterations; i < (dimensions.x / spacing) + borderIterations; i++)
         {
-            for (int j = 0; j < dimensions.y / spacing; j++)
+            for (int j = -borderIterations; j < (dimensions.y / spacing) + borderIterations; j++)
             {
                 float x = i * spacing + Random.Range(-randomness, randomness) - offset.x;
                 float y = j * spacing + Random.Range(-randomness, randomness) - offset.y;
                 Vector2 position = new Vector2(x, y);
                 // Distance to all player spawn locations has to be at least freeRadius
                 if (playerPositions.All(pp => (pp - position).sqrMagnitude > freeRadius * freeRadius))
+                {
                     CreateObject(totalWeight, position);
+                }
             }
         }
 
@@ -118,7 +121,13 @@ public class LevelManager : MonoBehaviour
             if (randomWeight < pair.Item1)
             {
                 if (pair.Item2 != null)
+                {
                     return Instantiate(pair.Item2, position, Quaternion.identity, environmentParent);
+                }
+                else
+                {
+                    return null;
+                }
                 
             }
             randomWeight -= pair.Item1;

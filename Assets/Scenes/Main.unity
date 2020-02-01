@@ -225,18 +225,18 @@ MonoBehaviour:
   playerCornerOffset: {x: 10, y: 10}
   fullyInsideLevelBuffer: {x: 2, y: 2}
   freeRadius: 2
-  shrinkStartTime: 60
-  shrinkRate: 0.25
+  shrinkStartTime: 0
+  shrinkRate: 0
   minimumDimensions: {x: 50, y: 30}
   boosterWeight: 5
   gunWeight: 3
   asteroidWeight: 0
   noneWeight: 20
-  minimumInterval: 5
-  maximumInterval: 10
+  minimumInterval: 10
+  maximumInterval: 20
   minimumDistance: 10
   maximumDistance: 15
-  initialVelocity: 15
+  initialVelocity: 20
 --- !u!1 &1068674830
 GameObject:
   m_ObjectHideFlags: 0

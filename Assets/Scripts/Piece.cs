@@ -36,7 +36,6 @@ public class Piece : MonoBehaviour
             transform.localScale = Vector3.one * baseScale * scale;
             if (TryGetComponent(out Damageable d))
             {
-                Debug.Log("Set health scale");
                 d.HealthScale = scale;
             }
             if (randomiseRotation)
