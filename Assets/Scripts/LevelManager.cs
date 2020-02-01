@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Transform environmentParent;
     public Vector2 Dimensions { get => dimensions; }
@@ -30,7 +30,7 @@ public class LevelGenerator : MonoBehaviour
 
     private (float, GameObject)[] weightList;
     private Vector2[] playerPositions;
-    public static LevelGenerator instance;
+    public static LevelManager instance;
 
     public void Start()
     {

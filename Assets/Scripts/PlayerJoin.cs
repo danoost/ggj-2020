@@ -41,7 +41,7 @@ public class PlayerJoin : MonoBehaviour
         int playerIndex = 0;
         playersJoined.ForEach(pi =>
         {
-            LevelGenerator.instance.SpawnPlayer(pi, playerIndex);
+            LevelManager.instance.SpawnPlayer(pi, playerIndex);
             playerIndex++;
         });
     }

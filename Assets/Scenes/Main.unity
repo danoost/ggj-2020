@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 767859528}
   - component: {fileID: 767859529}
   m_Layer: 0
-  m_Name: LevelGenerator
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f11c76beaeb9ea4cb7830e1b281c8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelGenerator: {fileID: 767859529}
+  levelManager: {fileID: 0}
   playerManager: {fileID: 613566695}
   state: 0
 --- !u!1 &1353619002

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameFlowManager : MonoBehaviour
 {
-    [SerializeField] private LevelGenerator levelGenerator;
+    [SerializeField] private LevelManager levelManager;
     [SerializeField] private PlayerJoin playerManager;
 
     public GameState state;
@@ -15,7 +15,7 @@ public class GameFlowManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        levelGenerator.GenerateLevel();
+        levelManager.GenerateLevel();
     }
 }
 
