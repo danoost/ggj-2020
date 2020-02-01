@@ -46,25 +46,5 @@ public class Exploding : MonoBehaviour
                 }
             }
         }
-
-        /*
-        Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, radius);
-
-        List<Rigidbody2D> uniqueBodies = new List<Rigidbody2D>();
-
-        foreach (Collider2D collision in collisions)
-        {
-            if (collision.TryGetComponent(out Damageable dother))
-            {
-                dother.DealDamage(damage);
-            }
-
-            Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
-            if (!uniqueBodies.Contains(rb))
-            {
-                uniqueBodies.Add(rb);
-            }
-        }
-        */
     }
 }
