@@ -14576,9 +14576,7 @@ GameObject:
   - component: {fileID: 8623948852945455929}
   - component: {fileID: 2635417913220691904}
   - component: {fileID: 3714214854909713596}
-  - component: {fileID: 3768967051214861149}
   - component: {fileID: 8111788948382435085}
-  - component: {fileID: 7075897435675455961}
   m_Layer: 0
   m_Name: Booster (Bottom Right)
   m_TagString: Piece
@@ -14626,7 +14624,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52ca893795f9490419e5bcba8ea2594a, type: 2}
+  - {fileID: 2100000, guid: 3578382ba3873574c8f68bd73a444ca1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14665,19 +14663,6 @@ MonoBehaviour:
   randomiseRotation: 1
   boostStrength: 1
   flameSystem: {fileID: 8192584148172794905}
---- !u!114 &3768967051214861149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372490209039368988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomiseHue: 0
 --- !u!60 &8111788948382435085
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14719,19 +14704,6 @@ PolygonCollider2D:
       - {x: -1, y: -2.37}
       - {x: 1, y: -2.37}
       - {x: 1, y: -0.16523689}
---- !u!114 &7075897435675455961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372490209039368988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomiseHue: 0
 --- !u!1 &4372490209056936658
 GameObject:
   m_ObjectHideFlags: 0
@@ -14744,9 +14716,7 @@ GameObject:
   - component: {fileID: 8623948852995529463}
   - component: {fileID: 2635417913269708302}
   - component: {fileID: 3714214854891097458}
-  - component: {fileID: 3768967051231371923}
   - component: {fileID: 8111788948400527043}
-  - component: {fileID: 8130342995786141810}
   m_Layer: 0
   m_Name: Booster (Bottom Left)
   m_TagString: Piece
@@ -14794,7 +14764,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52ca893795f9490419e5bcba8ea2594a, type: 2}
+  - {fileID: 2100000, guid: 3578382ba3873574c8f68bd73a444ca1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14833,19 +14803,6 @@ MonoBehaviour:
   randomiseRotation: 1
   boostStrength: 1
   flameSystem: {fileID: 8192584148222344663}
---- !u!114 &3768967051231371923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372490209056936658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomiseHue: 0
 --- !u!60 &8111788948400527043
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14887,19 +14844,6 @@ PolygonCollider2D:
       - {x: -1, y: -2.37}
       - {x: 1, y: -2.37}
       - {x: 1, y: -0.16523689}
---- !u!114 &8130342995786141810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372490209056936658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomiseHue: 0
 --- !u!1 &4372490209257793447
 GameObject:
   m_ObjectHideFlags: 0
@@ -14912,9 +14856,7 @@ GameObject:
   - component: {fileID: 8623948852660465538}
   - component: {fileID: 2635417915217482619}
   - component: {fileID: 3714214854020184071}
-  - component: {fileID: 3768967049420036070}
   - component: {fileID: 8111788950345163702}
-  - component: {fileID: 7224279086344394007}
   m_Layer: 0
   m_Name: Booster (Reverse)
   m_TagString: Piece
@@ -14962,7 +14904,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52ca893795f9490419e5bcba8ea2594a, type: 2}
+  - {fileID: 2100000, guid: 3578382ba3873574c8f68bd73a444ca1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15001,19 +14943,6 @@ MonoBehaviour:
   randomiseRotation: 1
   boostStrength: 1
   flameSystem: {fileID: 8192584146947704994}
---- !u!114 &3768967049420036070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372490209257793447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomiseHue: 0
 --- !u!60 &8111788950345163702
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -15055,19 +14984,6 @@ PolygonCollider2D:
       - {x: -1, y: -2.37}
       - {x: 1, y: -2.37}
       - {x: 1, y: -0.16523689}
---- !u!114 &7224279086344394007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372490209257793447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomiseHue: 0
 --- !u!1 &4467605086498253809
 GameObject:
   m_ObjectHideFlags: 0
@@ -15440,6 +15356,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mr: {fileID: 747771653491145887}
+  boosterMrs:
+  - {fileID: 2635417913220691904}
+  - {fileID: 2635417913269708302}
+  - {fileID: 2635417915217482619}
   text: {fileID: 6525737330907842079}
   myDamage: {fileID: 2041117206524122204}
 --- !u!114 &357623238064789326

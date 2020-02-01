@@ -15,6 +15,14 @@ public class RandomMaterial : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
 
-        meshRenderer.material = mats[Random.Range(0, mats.Length)];
+        if (mats.Length != 0)
+        {
+            meshRenderer.material = mats[Random.Range(0, mats.Length)];
+        }
+    }
+
+    public void SetMaterial(int index)
+    {
+        meshRenderer.material = mats[index];
     }
 }
