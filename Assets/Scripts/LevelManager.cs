@@ -24,6 +24,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Vector2 fullyInsideLevelBuffer = new Vector2(1, 1);
     [SerializeField] private float freeRadius = 2;
 
+    [Header("Play-Space Shrinking")]
+    [SerializeField] private float shrinkStartTime;
+    [SerializeField] private float shrinkRate;
+    [SerializeField] private Vector2 minimumDimensions = new Vector2(50, 30);
+
     [Header("Spawn Weights")]
     [SerializeField] private float boosterWeight;
     [SerializeField] private float gunWeight;
@@ -92,8 +97,9 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        // Start spawning stuff over time
+        // Start spawning stuff over time and shrink the level after a while 
         StartCoroutine(ContinuallySpawnObjects());
+        StartCoroutine(ShrinkLevel());
     }
 
     internal void SpawnPlayer(NewPlayerInfo pi, int playerIndex, int totalPlayers)
@@ -178,6 +184,41 @@ public class LevelManager : MonoBehaviour
                     rb.velocity = (targetPosition - startPosition).normalized * initialVelocity;
                 }
             }
+        }
+    }
+
+    private IEnumerator ShrinkLevel()
+    {
+        yield return new WaitUntil(() => GameFlowManager.instance.state == GameState.PLAYING);
+        yield return new WaitForSeconds(shrinkStartTime);
+
+        float aspectRatio = dimensions.x / dimensions.y;
+        float wallHeight = 5;
+
+        while (dimensions.x > minimumDimensions.x || dimensions.y > minimumDimensions.y)
+        {
+            yield return new WaitForFixedUpdate();
+
+            if (dimensions.x > minimumDimensions.x)
+            {
+                lef.transform.position -= shrinkRate * lef.transform.up * aspectRatio * Time.deltaTime;
+                rig.transform.position -= shrinkRate * rig.transform.up * aspectRatio * Time.deltaTime;
+            }
+            if (dimensions.y > minimumDimensions.y)
+            {
+                top.transform.position -= shrinkRate * top.transform.up * Time.deltaTime;
+                bot.transform.position -= shrinkRate * bot.transform.up * Time.deltaTime;
+            }
+
+            dimensions = new Vector2(
+                rig.transform.position.x - lef.transform.position.x,
+                top.transform.position.y - bot.transform.position.y
+            );
+
+            lef.transform.localScale = new Vector3(dimensions.y, 1, wallHeight);
+            rig.transform.localScale = new Vector3(dimensions.y, 1, wallHeight);
+            top.transform.localScale = new Vector3(dimensions.x, 1, wallHeight);
+            bot.transform.localScale = new Vector3(dimensions.x, 1, wallHeight);
         }
     }
 

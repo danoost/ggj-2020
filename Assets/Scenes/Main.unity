@@ -225,6 +225,9 @@ MonoBehaviour:
   playerCornerOffset: {x: 10, y: 10}
   fullyInsideLevelBuffer: {x: 1, y: 1}
   freeRadius: 2
+  shrinkStartTime: 60
+  shrinkRate: 0.25
+  minimumDimensions: {x: 50, y: 30}
   boosterWeight: 5
   gunWeight: 3
   asteroidWeight: 0
