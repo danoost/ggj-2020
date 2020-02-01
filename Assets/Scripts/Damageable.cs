@@ -26,9 +26,9 @@ public class Damageable : MonoBehaviour
 
     public void Explode()
     {
-        foreach (Transform child in gameObject.transform)
+        if (TryGetComponent(out Piece piece))
         {
-            child.GetComponent<Piece>().Detach();
+            piece.Detach();
         }
         Destroy(gameObject);
     }

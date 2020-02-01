@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5697990546751470701}
   - component: {fileID: 6455218209530713597}
   - component: {fileID: -8372325070576433091}
+  - component: {fileID: 666693630394553925}
   m_Layer: 0
   m_Name: Booster
   m_TagString: Piece
@@ -176,6 +177,19 @@ PolygonCollider2D:
       - {x: -1, y: -2.37}
       - {x: 1, y: -2.37}
       - {x: 1, y: -0.16523689}
+--- !u!114 &666693630394553925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184609690224282668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c126eaa795a90d4cba6e2d1e62897e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &9090907781050327257
 GameObject:
   m_ObjectHideFlags: 0

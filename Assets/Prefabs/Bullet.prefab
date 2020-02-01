@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4691530193737601642}
   - component: {fileID: 8642773827421294718}
   - component: {fileID: 3293392411238908332}
-  - component: {fileID: -7908676594805676173}
   - component: {fileID: -7906706481413381087}
+  - component: {fileID: -7908676594805676173}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Damaging
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,21 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-7908676594805676173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736897656283732312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953e17d855dc27e47b81dae0acbb1937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 7142069310768845935, guid: 739cde3c4caa40a4a9bfa5b30601f0fa,
-    type: 3}
-  damage: 100
 --- !u!58 &-7906706481413381087
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -111,3 +96,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-7908676594805676173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736897656283732312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953e17d855dc27e47b81dae0acbb1937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  radius: 0.5
+  pushForce: 100
