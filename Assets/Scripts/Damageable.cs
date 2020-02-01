@@ -7,6 +7,7 @@ public class Damageable : MonoBehaviour
     [SerializeField]
     private int maxHealth = 100;
 
+    [SerializeField]
     private int currentHealth;
 
     private void Start()

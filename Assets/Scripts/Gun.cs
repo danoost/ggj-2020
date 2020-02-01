@@ -41,13 +41,11 @@ public class Gun : Piece
     {
         while (true)
         {
-            if (rootController == null)
+            if (rootController == null || !rootController.Interacting)
             {
-                yield return new WaitUntil(() => rootController != null);
-            }
-            if (!rootController.Interacting)
-            {
-                yield return new WaitUntil(() => rootController.Interacting);
+                yield return new WaitUntil(() =>
+                    rootController != null && rootController.Interacting
+                );
             }
             Shoot();
             yield return new WaitForSeconds(1 / baseShotsPerSecond * scaleModifier);

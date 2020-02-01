@@ -62,20 +62,24 @@ public class Piece : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
-    public void Detach()
+    public void Detach(bool recursive = true)
     {
+        if (recursive)
+        {
+            foreach (Piece child in GetComponentsInChildren<Piece>())
+            {
+                if (child.TryGetComponent(out Piece piece))
+                {
+                    piece.Detach(recursive = false);
+                }
+            }
+        }
         root = null;
         rootRb = null;
         rootController = null;
         transform.parent = null;
-        foreach (Transform child in transform)
-        {
-            if (child.TryGetComponent(out Piece piece))
-            {
-                piece.Detach();
-            }
-        }
         gameObject.layer = LayerMask.NameToLayer("Spooky Ghosts");
+        selfRb = gameObject.AddComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
