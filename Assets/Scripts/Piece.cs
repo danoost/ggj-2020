@@ -40,7 +40,15 @@ public class Piece : MonoBehaviour
 
     private GameObject FindRoot(GameObject other)
     {
-        return other.GetComponentInParent<PlayerController>().gameObject;
+        PlayerController player = other.GetComponentInParent<PlayerController>();
+        if (player != null)
+        {
+            return player.gameObject;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private void SetRoot(GameObject newRoot)
@@ -75,8 +83,12 @@ public class Piece : MonoBehaviour
             || collision.collider.CompareTag("Piece"))
             )
         {
-            SetRoot(FindRoot(collision.collider.gameObject));
-            transform.parent = collision.collider.transform;
+            GameObject newRoot = FindRoot(collision.collider.gameObject);
+            if (newRoot != null)
+            {
+                SetRoot(newRoot);
+                transform.parent = collision.collider.transform;
+            }
         }
     }
 }

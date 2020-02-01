@@ -24,8 +24,26 @@ public class DynamicMaterialColor : MonoBehaviour
         return Random.ColorHSV(0, 1, 1, 1, 1, 1);
     }
 
+    public Color GetColor()
+    {
+        return mat.color;
+    }
+
     public void SetColor(Color color)
     {
         meshRenderer.material.SetColor("_Color", color);
+        // this happens for objects instantiated later, like bullets. who knows why
+        if (mat == null)
+        {
+            //Start();
+        }
+
+        mat.SetColor("_Color", color);
+
+        TrailRenderer tr = GetComponentInChildren<TrailRenderer>();
+        if (tr != null) {
+            tr.startColor = color;
+            tr.endColor = new Color(color.r, color.g, color.b, 0);
+        }
     }
 }
