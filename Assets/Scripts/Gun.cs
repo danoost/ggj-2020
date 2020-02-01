@@ -41,9 +41,9 @@ public class Gun : Piece
     {
         while (true)
         {
-            if (root == null)
+            if (rootController == null)
             {
-                yield return new WaitUntil(() => root != null);
+                yield return new WaitUntil(() => rootController != null);
             }
             if (!rootController.Interacting)
             {
