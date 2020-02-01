@@ -59,6 +59,7 @@ public class Piece : MonoBehaviour
         Debug.Log(rootController);
         selfRbBackup = new Rigidbody2D().GetCopyOf(selfRb);
         Destroy(selfRb);
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     public void Detach()
@@ -74,6 +75,7 @@ public class Piece : MonoBehaviour
                 piece.Detach();
             }
         }
+        gameObject.layer = LayerMask.NameToLayer("Spooky Ghosts");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
