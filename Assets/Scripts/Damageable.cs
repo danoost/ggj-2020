@@ -7,21 +7,45 @@ public class Damageable : MonoBehaviour
     [SerializeField]
     private int maxHealth = 100;
 
+    [HideInInspector]
+    public int currentHealth;
+
     [SerializeField]
-    private int currentHealth;
+    private bool player = false;
+    private bool cooledDown = true;
 
     public float HealthScale { get; set; } = 1f;
 
     private void Start()
     {
-        currentHealth = (int)(maxHealth * HealthScale);
+        if (player)
+        {
+            currentHealth = 3;
+            Debug.Log(currentHealth);
+        }
+        else
+        {
+            currentHealth = (int)(maxHealth * HealthScale);
+        }
     }
 
     public void DealDamage(int amount)
     {
-        Debug.Log($"oof. {amount} damage, {currentHealth} -> {currentHealth - amount}");
-        currentHealth -= amount;
-        if (currentHealth < 0)
+        if (player)
+        {
+            if (!cooledDown) return;
+
+            currentHealth--;
+            Debug.Log("Player Damaged");
+            cooledDown = false;
+            StartCoroutine(CoolDown());
+        }
+        else
+        {
+            Debug.Log($"oof. {amount} damage, {currentHealth} -> {currentHealth - amount}");
+            currentHealth -= amount;
+        }
+        if (currentHealth <= 0)
         {
             Explode();
         }
@@ -34,5 +58,11 @@ public class Damageable : MonoBehaviour
             piece.Detach();
         }
         Destroy(gameObject);
+    }
+
+    private IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(2);
+        cooledDown = true;
     }
 }
