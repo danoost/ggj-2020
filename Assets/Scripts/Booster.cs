@@ -60,6 +60,6 @@ public class Booster : Piece
     private void Boost(float amount)
     {
         if (amount < 0) return;
-        rootRb.AddForceAtPosition(amount * -transform.up, transform.position);
+        rootRb.AddForceAtPosition(amount * transform.up, transform.position);
     }
 }
