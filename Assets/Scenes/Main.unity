@@ -223,11 +223,17 @@ MonoBehaviour:
   spacing: 5
   seed: 69
   playerCornerOffset: {x: 10, y: 10}
+  fullyInsideLevelBuffer: {x: 1, y: 1}
   freeRadius: 2
   boosterWeight: 5
   gunWeight: 3
   asteroidWeight: 0
   noneWeight: 20
+  minimumInterval: 5
+  maximumInterval: 10
+  minimumDistance: 10
+  maximumDistance: 15
+  initialVelocity: 15
 --- !u!1 &1068674830
 GameObject:
   m_ObjectHideFlags: 0

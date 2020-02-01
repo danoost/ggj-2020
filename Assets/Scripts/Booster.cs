@@ -22,9 +22,6 @@ public class Booster : Piece
         if (rootController == null)
             return;
 
-        Debug.Log(rootController.Movement);
-        Debug.Log(rootController.Interacting);
-
         bool flame = false;
 
         // Forward and backward pushiness

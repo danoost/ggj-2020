@@ -56,7 +56,6 @@ public class Piece : MonoBehaviour
         root = newRoot;
         rootRb = root.GetComponent<Rigidbody2D>();
         rootController = root.GetComponent<PlayerController>();
-        Debug.Log(rootController);
         selfRbBackup = new Rigidbody2D().GetCopyOf(selfRb);
         Destroy(selfRb);
         gameObject.layer = LayerMask.NameToLayer("Default");
@@ -89,11 +88,14 @@ public class Piece : MonoBehaviour
             || collision.collider.CompareTag("Piece"))
             )
         {
-            GameObject newRoot = FindRoot(collision.collider.gameObject);
-            if (newRoot != null)
+            if (LevelManager.instance.IsFullyInsideLevel(transform.position))
             {
-                SetRoot(newRoot);
-                transform.parent = collision.collider.transform;
+                GameObject newRoot = FindRoot(collision.collider.gameObject);
+                if (newRoot != null)
+                {
+                    SetRoot(newRoot);
+                    transform.parent = collision.collider.transform;
+                }
             }
         }
     }

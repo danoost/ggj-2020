@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 
 public class LevelManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float spacing = 5;
     [SerializeField] private int seed = 69;
     [SerializeField] private Vector2 playerCornerOffset = new Vector2(10, 10);
+    [SerializeField] private Vector2 fullyInsideLevelBuffer = new Vector2(1, 1);
     [SerializeField] private float freeRadius = 2;
 
     [Header("Spawn Weights")]
@@ -28,9 +30,18 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float asteroidWeight;
     [SerializeField] private float noneWeight;
 
+    [Header("Continual Spawn Parameters")]
+    [SerializeField] private float minimumInterval;
+    [SerializeField] private float maximumInterval;
+    [SerializeField] private float minimumDistance;
+    [SerializeField] private float maximumDistance;
+    [SerializeField] private float initialVelocity;
+
     private (float, GameObject)[] weightList;
     private Vector2[] playerPositions;
     public static LevelManager instance;
+
+    private GameObject top, bot, lef, rig;
 
     public void Start()
     {
@@ -42,20 +53,21 @@ public class LevelManager : MonoBehaviour
         Vector2 offset = dimensions / 2;
         float wallHeight = 5;
         // Create the boundary walls
-        var top = Instantiate(wallPrefab, new Vector3(0, offset.y, 0), Quaternion.identity, environmentParent);
+        top = Instantiate(wallPrefab, new Vector3(0, offset.y, 0), Quaternion.identity, environmentParent);
         top.transform.localScale = new Vector3(dimensions.x, 1, wallHeight);
         top.name = "Top";
-        var bot = Instantiate(wallPrefab, new Vector3(0, -offset.y, 0), Quaternion.Euler(0, 0, 180), environmentParent);
+        bot = Instantiate(wallPrefab, new Vector3(0, -offset.y, 0), Quaternion.Euler(0, 0, 180), environmentParent);
         bot.transform.localScale = new Vector3(dimensions.x, 1, wallHeight);
         bot.name = "Bottom";
-        var lef = Instantiate(wallPrefab, new Vector3(-offset.x, 0, 0), Quaternion.Euler(0, 0, 90), environmentParent);
+        lef = Instantiate(wallPrefab, new Vector3(-offset.x, 0, 0), Quaternion.Euler(0, 0, 90), environmentParent);
         lef.transform.localScale = new Vector3(dimensions.y, 1, wallHeight);
         lef.name = "Left";
-        var rig = Instantiate(wallPrefab, new Vector3(offset.x, 0, 0), Quaternion.Euler(0, 0, -90), environmentParent);
+        rig = Instantiate(wallPrefab, new Vector3(offset.x, 0, 0), Quaternion.Euler(0, 0, -90), environmentParent);
         rig.transform.localScale = new Vector3(dimensions.y, 1, wallHeight);
         rig.name = "Right";
 
-        playerPositions = new Vector2[] { 
+        playerPositions = new Vector2[] 
+        { 
             -offset + playerCornerOffset, 
             offset - playerCornerOffset, 
             new Vector2(offset.x - playerCornerOffset.x, -offset.y + playerCornerOffset.y), 
@@ -79,6 +91,9 @@ public class LevelManager : MonoBehaviour
                     CreateObject(totalWeight, position);
             }
         }
+
+        // Start spawning stuff over time
+        StartCoroutine(ContinuallySpawnObjects());
     }
 
     internal void SpawnPlayer(NewPlayerInfo pi, int playerIndex, int totalPlayers)
@@ -89,7 +104,7 @@ public class LevelManager : MonoBehaviour
         newPlayer.GetComponent<PlayerCamera>().SetConfig(totalPlayers, playerIndex);
     }
 
-    private void CreateObject(float totalWeight, Vector2 position)
+    private GameObject CreateObject(float totalWeight, Vector2 position)
     {
         float randomWeight = Random.Range(0, totalWeight);
         foreach (var pair in weightList)
@@ -97,10 +112,95 @@ public class LevelManager : MonoBehaviour
             if (randomWeight < pair.Item1)
             {
                 if (pair.Item2 != null)
-                    Instantiate(pair.Item2, position, Quaternion.identity, environmentParent);
-                return;
+                    return Instantiate(pair.Item2, position, Quaternion.identity, environmentParent);
+                
             }
             randomWeight -= pair.Item1;
         }
+        return null;
+    }
+
+    private Vector2 GetPositionBeyondWall(int wallId)
+    {
+        Vector2 offset = dimensions / 2;
+        switch (wallId)
+        {
+            // Left wall
+            case 0:
+                return new Vector2(
+                    lef.transform.position.x - Random.Range(minimumDistance, maximumDistance), 
+                    Random.Range(-offset.y, offset.y)
+                );
+            // Top wall
+            case 1:
+                return new Vector2(
+                    Random.Range(-offset.x, offset.x),
+                    top.transform.position.y + Random.Range(minimumDistance, maximumDistance)
+                );
+            // Right wall
+            case 2:
+                return new Vector2(
+                    rig.transform.position.x + Random.Range(minimumDistance, maximumDistance),
+                    Random.Range(-offset.y, offset.y)
+                );
+            // Bottom wall
+            case 3:
+                return new Vector2(
+                    Random.Range(-offset.x, offset.x),
+                    bot.transform.position.y - Random.Range(minimumDistance, maximumDistance)
+                );
+            default:
+                return Vector2.zero;
+        }
+    }
+
+    private IEnumerator ContinuallySpawnObjects()
+    {
+        yield return new WaitUntil(() => GameFlowManager.instance.state == GameState.PLAYING);
+        float totalWeight = weightList.Sum(thing => thing.Item1);
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minimumInterval, maximumInterval));
+
+            // Choose a wall to start from and target. Can't be the same one.
+            int startWallId = Random.Range(0, 4);
+            int targetWallId;
+            while ((targetWallId = Random.Range(0, 4)) == startWallId) ;
+
+            Vector2 startPosition = GetPositionBeyondWall(startWallId);
+            Vector2 targetPosition = GetPositionBeyondWall(targetWallId);
+
+            GameObject newObj = CreateObject(totalWeight, startPosition);
+            if (newObj != null) 
+            {
+                if (newObj.TryGetComponent(out Rigidbody2D rb))
+                {
+                    rb.velocity = (targetPosition - startPosition).normalized * initialVelocity;
+                }
+            }
+        }
+    }
+
+    public bool IsFullyInsideLevel(Vector2 position)
+    {
+        Vector2 offset = dimensions / 2;
+
+        if (position.x < -offset.x + fullyInsideLevelBuffer.x)
+        {
+            return false;
+        }
+        if (position.x > offset.x - fullyInsideLevelBuffer.x)
+        {
+            return false;
+        }
+        if (position.y < -offset.y + fullyInsideLevelBuffer.y)
+        {
+            return false;
+        }
+        if (position.y > offset.y - fullyInsideLevelBuffer.y)
+        {
+            return false;
+        }
+        return true;
     }
 }
