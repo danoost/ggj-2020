@@ -9,12 +9,28 @@ public class Booster : Piece
 
     [SerializeField]
     private ParticleSystem flameSystem;
+    ParticleSystem.MainModule main;
 
     protected new void Awake()
     {
         base.Awake();
-        var main = flameSystem.main;
+        main = flameSystem.main;
         main.startSize = main.startSize.constant * transform.lossyScale.x / baseScale;
+    }
+
+    private void Start()
+    {
+        UpdateColor();
+    }
+
+    private void UpdateColor()
+    {
+
+        if (rootVisual != null)
+        {
+            var main = flameSystem.main;
+            main.startColor = rootVisual.Color;
+        }
     }
 
     private void FixedUpdate()
@@ -48,6 +64,12 @@ public class Booster : Piece
 
         var emission = flameSystem.emission;
         emission.enabled = flame;
+    }
+
+    protected new void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        UpdateColor();
     }
 
     private void BoostMassaged(float amount)

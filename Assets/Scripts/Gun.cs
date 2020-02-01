@@ -58,7 +58,7 @@ public class Gun : Piece
         GameObject newBullet = Instantiate(bullet, bulletSpawnPoint, transform.rotation);
 
         newBullet.transform.localScale = transform.lossyScale * baseBulletScale;
-        newBullet.GetComponent<DynamicMaterialColor>().SetColor(GetComponent<DynamicMaterialColor>().GetColor());
+        newBullet.GetComponent<DynamicMaterialColor>().SetColor(rootVisual.Color);
 
         newBullet.GetComponent<Exploding>().Damage = (int)(baseDamage * scaleModifier);
         newBullet.GetComponent<Exploding>().PushForceScale = scaleModifier;

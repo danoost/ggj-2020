@@ -9,14 +9,16 @@ public class PlayerJoin : MonoBehaviour
     [SerializeField] private InputActionAsset asset;
     [SerializeField] private Camera previewCamera;
 
-    [SerializeField] private Material[] playerMats;
-    [SerializeField] private Color[] playerColors;
+    public Material[] playerMats;
+    public Color[] playerColors;
 
     private InputAction interactAction;
     private List<NewPlayerInfo> playersJoined;
+    public static PlayerJoin instance;
 
     protected void Awake()
     {
+        instance = this;
         playersJoined = new List<NewPlayerInfo>();
         interactAction = asset.FindAction("InteractPressed");
         interactAction.performed += JoinPlayer;

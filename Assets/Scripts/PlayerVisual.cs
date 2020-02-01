@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerVisual : MonoBehaviour
 {
     [SerializeField]
-    Material[] mats;
-
-    [SerializeField]
     MeshRenderer mr;
+
+    public Color Color { get; private set; }
 
     public void SetPlayerIndex(int index)
     {
-        mr.material = mats[index];
+        mr.material = PlayerJoin.instance.playerMats[index];
+        Color = PlayerJoin.instance.playerColors[index];
     }
 }

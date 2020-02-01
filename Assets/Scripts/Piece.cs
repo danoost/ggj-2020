@@ -8,6 +8,7 @@ public class Piece : MonoBehaviour
     protected GameObject root;
     protected Rigidbody2D rootRb;
     protected PlayerController rootController;
+    protected PlayerVisual rootVisual;
     protected Rigidbody2D selfRb;
     private Rigidbody2D selfRbBackup;
 
@@ -61,6 +62,7 @@ public class Piece : MonoBehaviour
         root = newRoot;
         rootRb = root.GetComponent<Rigidbody2D>();
         rootController = root.GetComponent<PlayerController>();
+        rootVisual = root.GetComponent<PlayerVisual>();
         selfRbBackup = new Rigidbody2D().GetCopyOf(selfRb);
         Destroy(selfRb);
         gameObject.layer = LayerMask.NameToLayer("Default");
@@ -89,7 +91,7 @@ public class Piece : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (root == null &&
             (collision.collider.CompareTag("CommandCentre")
