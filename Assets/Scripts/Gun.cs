@@ -19,6 +19,9 @@ public class Gun : Piece
     [SerializeField]
     private float bulletLifetime = 20f;
 
+    [SerializeField]
+    private float recoilForce = 10f;
+
     private Coroutine shootingCoroutine;
     private bool isShooting = false;
 
@@ -43,19 +46,27 @@ public class Gun : Piece
     {
         while (true)
         {
-            if (isShooting && root != null)
+            if (root == null)
             {
-                Shoot();
+                yield return new WaitUntil(() => root != null);
             }
+            if (!isShooting)
+            {
+                yield return new WaitUntil(() => isShooting);
+            }
+            Shoot();
             yield return new WaitForSeconds(1 / shotsPerSecond);
         }
     }
 
     private void Shoot()
     {
-        GameObject newBullet = Instantiate(bullet, transform.position + (transform.up * 0.5f), transform.rotation);
+        Vector2 bulletSpawnPoint = transform.position + (transform.up * 0.7f);
+        GameObject newBullet = Instantiate(bullet, bulletSpawnPoint, transform.rotation);
         newBullet.GetComponent<Exploding>().Damage = damage;
         newBullet.GetComponent<Rigidbody2D>().velocity = newBullet.transform.up * bulletSpeed;
         Destroy(newBullet, bulletLifetime);
+
+        rootRb.AddForceAtPosition(recoilForce * -transform.up, bulletSpawnPoint);
     }
 }
