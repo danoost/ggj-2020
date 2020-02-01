@@ -10,9 +10,9 @@ public class Booster : Piece
     [SerializeField]
     private ParticleSystem flameSystem;
 
-    protected new void Start()
+    protected new void Awake()
     {
-        base.Start();
+        base.Awake();
         var main = flameSystem.main;
         main.startSize = main.startSize.constant * transform.lossyScale.x / baseScale;
     }

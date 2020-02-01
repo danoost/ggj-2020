@@ -20,7 +20,7 @@ public class Piece : MonoBehaviour
     [SerializeField]
     private bool randomiseRotation = true;
 
-    protected void Start()
+    protected void Awake()
     {
         selfRb = GetComponent<Rigidbody2D>();
 
@@ -32,7 +32,13 @@ public class Piece : MonoBehaviour
         if (root == null)
         {
             // Scale and rotation randomisation
-            transform.localScale = Vector3.one * baseScale * Random.Range(scaleMinFactor, scaleMaxFactor);
+            float scale = Random.Range(scaleMinFactor, scaleMaxFactor);
+            transform.localScale = Vector3.one * baseScale * scale;
+            if (TryGetComponent(out Damageable d))
+            {
+                Debug.Log("Set health scale");
+                d.HealthScale = scale;
+            }
             if (randomiseRotation)
                 transform.rotation = Quaternion.Euler(0, 0, Random.Range(-180, 180));
         }

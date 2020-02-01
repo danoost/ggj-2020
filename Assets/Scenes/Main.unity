@@ -223,7 +223,7 @@ MonoBehaviour:
   spacing: 5
   seed: 69
   playerCornerOffset: {x: 10, y: 10}
-  fullyInsideLevelBuffer: {x: 1, y: 1}
+  fullyInsideLevelBuffer: {x: 2, y: 2}
   freeRadius: 2
   shrinkStartTime: 60
   shrinkRate: 0.25

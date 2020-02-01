@@ -29,9 +29,9 @@ public class Gun : Piece
 
     float inverseScaleModifier;
 
-    protected new void Start()
+    protected new void Awake()
     {
-        base.Start();
+        base.Awake();
         StartCoroutine(ShootLots());
         scaleModifier = transform.lossyScale.x / baseScale;
         inverseScaleModifier = 1 / scaleModifier;

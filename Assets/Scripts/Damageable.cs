@@ -10,9 +10,11 @@ public class Damageable : MonoBehaviour
     [SerializeField]
     private int currentHealth;
 
+    public float HealthScale { get; set; } = 1f;
+
     private void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = (int)(maxHealth * HealthScale);
     }
 
     public void DealDamage(int amount)
