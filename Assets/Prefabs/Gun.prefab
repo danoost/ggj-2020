@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!50 &2199980307054814334
 Rigidbody2D:
   serializedVersion: 4
@@ -179,7 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomiseHue: 1
+  mats:
+  - {fileID: 2100000, guid: 39d237c547bc1aa45bcdb848b7fc589c, type: 2}
 --- !u!1 &7313004077834685066
 GameObject:
   m_ObjectHideFlags: 0

@@ -123,7 +123,9 @@ public class LevelManager : MonoBehaviour
             {
                 if (pair.Item2 != null)
                 {
-                    return Instantiate(pair.Item2, position, Quaternion.identity, environmentParent);
+                    GameObject newObject = Instantiate(pair.Item2, position, Quaternion.identity, environmentParent);
+                    newObject.transform.localRotation *= Quaternion.Euler(0, Random.Range(0, 360), 0);
+                    return newObject;
                 }
                 else
                 {
