@@ -22,16 +22,17 @@ public class Exploding : MonoBehaviour
         if (collision.collider.CompareTag("Piece") || collision.collider.CompareTag("CommandCentre"))
         {
             Explode(Damage);
-            if (TryGetComponent(out TrailRenderer tr))
-            {
-                Destroy(tr.gameObject, tr.time);
-            }
             Destroy(gameObject);
         }
     }
 
     private void OnDestroy()
     {
+        TrailRenderer tr = GetComponentInChildren<TrailRenderer>();
+        if (tr != null)
+        {
+            Destroy(tr.gameObject, tr.time);
+        }
         gameObject.transform.DetachChildren();
     }
 
