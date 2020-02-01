@@ -114,7 +114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomiseHue: 1
+  mats:
+  - {fileID: 2100000, guid: e76fb767af927154697fbc2bf9feed6e, type: 2}
+  - {fileID: 2100000, guid: 3578382ba3873574c8f68bd73a444ca1, type: 2}
+  - {fileID: 2100000, guid: 52ca893795f9490419e5bcba8ea2594a, type: 2}
+  - {fileID: 2100000, guid: 014b270305221d74aabc736350964756, type: 2}
+  - {fileID: 2100000, guid: d7d17c593e8f69b4ead048c4554df4fc, type: 2}
+  - {fileID: 2100000, guid: dcb3b3bd614cd3f429c45d6df4d0d024, type: 2}
+  - {fileID: 2100000, guid: 01fee4e553f0a944abef38a7efe1f189, type: 2}
 --- !u!50 &6455218209530713597
 Rigidbody2D:
   serializedVersion: 4
@@ -190,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!1 &9090907781050327257
 GameObject:
   m_ObjectHideFlags: 0
