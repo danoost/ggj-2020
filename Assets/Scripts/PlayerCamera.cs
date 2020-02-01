@@ -19,15 +19,28 @@ public class PlayerCamera : MonoBehaviour
         }
         else if (screens == 3)
         {
-            x = index / 3f;
-            y = 0;
-            width = 1 / 3f;
-            height = 1;
+            switch (index)
+            {
+                case 0:
+                    x = 0;
+                    y = 0.5f;
+                    break;
+                case 1:
+                    x = 0.5f;
+                    y = 0.5f;
+                    break;
+                case 2:
+                    x = 0.25f;
+                    y = 0f;
+                    break;
+            }
+            width = 0.5f;
+            height = 0.5f;
         }
         else if (screens == 4)
         {
             x = (index % 2) / 2f;
-            y = index < 2 ? 0 : 0.5f;
+            y = index >= 2 ? 0 : 0.5f;
             width = 0.5f;
             height = 0.5f;
         }

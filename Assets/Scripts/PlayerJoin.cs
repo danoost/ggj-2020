@@ -7,6 +7,7 @@ using System.Linq;
 public class PlayerJoin : MonoBehaviour
 {
     [SerializeField] private InputActionAsset asset;
+    [SerializeField] private Camera previewCamera;
 
     private InputAction interactAction;
     private List<NewPlayerInfo> playersJoined;
@@ -38,6 +39,8 @@ public class PlayerJoin : MonoBehaviour
     private void StartGame()
     {
         GameFlowManager.instance.state = GameState.PLAYING;
+        previewCamera.transform.rotation = Quaternion.Euler(180, 0, 0);
+        previewCamera.clearFlags = CameraClearFlags.SolidColor;
         int playerIndex = 0;
         playersJoined.ForEach(pi =>
         {
