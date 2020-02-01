@@ -64,7 +64,7 @@ public class Gun : Piece
 
         newBullet.GetComponent<Exploding>().Damage = (int)(baseDamage * scaleModifier);
         newBullet.GetComponent<Exploding>().PushForceScale = scaleModifier;
-        newBullet.GetComponent<Rigidbody2D>().velocity = newBullet.transform.up * baseBulletSpeed * inverseScaleModifier;
+        newBullet.GetComponent<Rigidbody2D>().velocity = (Vector2)newBullet.transform.up * baseBulletSpeed * inverseScaleModifier + rootRb.velocity;
         Destroy(newBullet, bulletLifetime);
 
         rootRb.AddForceAtPosition(baseRecoilForce * -transform.up * scaleModifier, bulletSpawnPoint);
