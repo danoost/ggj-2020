@@ -29,17 +29,17 @@ public class LevelGenerator : MonoBehaviour
         Vector2 offset = dimensions / 2;
         float wallHeight = 5;
         // Create the boundary walls
-        var top = Instantiate(wallPrefab, new Vector3(0, 0, offset.y), Quaternion.identity, environmentParent);
-        top.transform.localScale = new Vector3(dimensions.x, wallHeight, 0);
+        var top = Instantiate(wallPrefab, new Vector3(0, offset.y, 0), Quaternion.identity, environmentParent);
+        top.transform.localScale = new Vector3(dimensions.x, 1, wallHeight);
         top.name = "Top";
-        var bot = Instantiate(wallPrefab, new Vector3(0, 0, -offset.y), Quaternion.Euler(0, 180, 0), environmentParent);
-        bot.transform.localScale = new Vector3(dimensions.x, wallHeight, 0);
+        var bot = Instantiate(wallPrefab, new Vector3(0, -offset.y, 0), Quaternion.Euler(0, 0, 180), environmentParent);
+        bot.transform.localScale = new Vector3(dimensions.x, 1, wallHeight);
         bot.name = "Bottom";
-        var lef = Instantiate(wallPrefab, new Vector3(-offset.x, 0, 0), Quaternion.Euler(0, -90, 0), environmentParent);
-        lef.transform.localScale = new Vector3(dimensions.y, wallHeight, 0);
+        var lef = Instantiate(wallPrefab, new Vector3(-offset.x, 0, 0), Quaternion.Euler(0, 0, 90), environmentParent);
+        lef.transform.localScale = new Vector3(dimensions.y, 1, wallHeight);
         lef.name = "Left";
-        var rig = Instantiate(wallPrefab, new Vector3(offset.x, 0, 0), Quaternion.Euler(0, 90, 0), environmentParent);
-        rig.transform.localScale = new Vector3(dimensions.y, wallHeight, 0);
+        var rig = Instantiate(wallPrefab, new Vector3(offset.x, 0, 0), Quaternion.Euler(0, 0, -90), environmentParent);
+        rig.transform.localScale = new Vector3(dimensions.y, 1, wallHeight);
         rig.name = "Right";
 
         // Create all the objects
@@ -52,13 +52,13 @@ public class LevelGenerator : MonoBehaviour
             for (int j = 0; j < dimensions.y / spacing; j++)
             {
                 float x = i * spacing + UnityEngine.Random.Range(-randomness, randomness) - offset.x;
-                float z = j * spacing + UnityEngine.Random.Range(-randomness, randomness) - offset.y;
-                CreateObject(totalWeight, x, z);
+                float y = j * spacing + UnityEngine.Random.Range(-randomness, randomness) - offset.y;
+                CreateObject(totalWeight, x, y);
             }
         }
     }
 
-    private void CreateObject(float totalWeight, float x, float z)
+    private void CreateObject(float totalWeight, float x, float y)
     {
         float randomWeight = UnityEngine.Random.Range(0, totalWeight);
         foreach (var pair in weightList)
@@ -66,7 +66,7 @@ public class LevelGenerator : MonoBehaviour
             if (randomWeight < pair.Item1)
             {
                 if (pair.Item2 != null)
-                    Instantiate(pair.Item2, new Vector3(x, 0, z), Quaternion.identity, environmentParent);
+                    Instantiate(pair.Item2, new Vector3(x, y, 0), Quaternion.identity, environmentParent);
                 return;
             }
             randomWeight -= pair.Item1;
