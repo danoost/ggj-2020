@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
 {
-    [SerializeField] private DynamicMaterialColor[] thingsToColor;
-    private Color myColor;
+    [SerializeField]
+    Material[] mats;
 
-    public void SetColor(Color newColor)
+    [SerializeField]
+    MeshRenderer mr;
+
+    public void SetPlayerIndex(int index)
     {
-        myColor = newColor;
-        Debug.Log(myColor);
-        foreach (DynamicMaterialColor thing in thingsToColor)
-            thing.SetColor(myColor);
+        mr.material = mats[index];
     }
 }
