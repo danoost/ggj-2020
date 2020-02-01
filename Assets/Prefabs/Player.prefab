@@ -14273,7 +14273,7 @@ GameObject:
   - component: {fileID: 3714214854909713596}
   - component: {fileID: 3768967051214861149}
   - component: {fileID: 8111788948382435085}
-  - component: {fileID: 8222950552726231413}
+  - component: {fileID: 7075897435675455961}
   m_Layer: 0
   m_Name: Booster (Bottom Right)
   m_TagString: Piece
@@ -14414,19 +14414,19 @@ PolygonCollider2D:
       - {x: -1, y: -2.37}
       - {x: 1, y: -2.37}
       - {x: 1, y: -0.16523689}
---- !u!114 &8222950552726231413
+--- !u!114 &7075897435675455961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4372490209039368988}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c126eaa795a90d4cba6e2d1e62897e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  randomiseHue: 0
 --- !u!1 &4372490209056936658
 GameObject:
   m_ObjectHideFlags: 0
@@ -14441,7 +14441,7 @@ GameObject:
   - component: {fileID: 3714214854891097458}
   - component: {fileID: 3768967051231371923}
   - component: {fileID: 8111788948400527043}
-  - component: {fileID: 8222950552775248059}
+  - component: {fileID: 8130342995786141810}
   m_Layer: 0
   m_Name: Booster (Bottom Left)
   m_TagString: Piece
@@ -14582,19 +14582,19 @@ PolygonCollider2D:
       - {x: -1, y: -2.37}
       - {x: 1, y: -2.37}
       - {x: 1, y: -0.16523689}
---- !u!114 &8222950552775248059
+--- !u!114 &8130342995786141810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4372490209056936658}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c126eaa795a90d4cba6e2d1e62897e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  randomiseHue: 0
 --- !u!1 &4372490209257793447
 GameObject:
   m_ObjectHideFlags: 0
@@ -14609,7 +14609,7 @@ GameObject:
   - component: {fileID: 3714214854020184071}
   - component: {fileID: 3768967049420036070}
   - component: {fileID: 8111788950345163702}
-  - component: {fileID: 8222950551367466446}
+  - component: {fileID: 7224279086344394007}
   m_Layer: 0
   m_Name: Booster (Reverse)
   m_TagString: Piece
@@ -14750,19 +14750,19 @@ PolygonCollider2D:
       - {x: -1, y: -2.37}
       - {x: 1, y: -2.37}
       - {x: 1, y: -0.16523689}
---- !u!114 &8222950551367466446
+--- !u!114 &7224279086344394007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4372490209257793447}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c126eaa795a90d4cba6e2d1e62897e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  randomiseHue: 0
 --- !u!1 &8889362011152213096
 GameObject:
   m_ObjectHideFlags: 0
@@ -14773,7 +14773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8889362011152213097}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14907,6 +14907,7 @@ GameObject:
   - component: {fileID: 8889362011631208832}
   - component: {fileID: 8889362011631208895}
   - component: {fileID: 8889362011631208892}
+  - component: {fileID: 1446305217060511215}
   m_Layer: 0
   m_Name: Body
   m_TagString: CommandCentre
@@ -14989,6 +14990,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2907c96fbd903e842b909d80b006e143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thingsToColor:
+  - {fileID: 1446305217060511215}
+  - {fileID: 3768967051214861149}
+  - {fileID: 3768967051231371923}
+  - {fileID: 3768967049420036070}
 --- !u!114 &8889362011631208832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15039,3 +15045,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1446305217060511215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889362011631208889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e22ccef4c80d064dba785cafbef328b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomiseHue: 0

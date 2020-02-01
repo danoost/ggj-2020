@@ -29,14 +29,14 @@ public class Booster : Piece
         float cos = Mathf.Cos(Mathf.Deg2Rad * angleBetween);
         float boostAmount = InputHandler.VerticalMovement * boostStrength * cos;
 
-        if (boostAmount > 0.05)
+        if (boostAmount > 0.3)
         {
             BoostMassaged(boostAmount);
             flame = true;
         }
 
         // Torquiness
-        float cross = Vector3.Cross((transform.position - root.transform.position).normalized, transform.up).z;
+        float cross = Vector3.Cross((transform.position - (Vector3)rootRb.worldCenterOfMass).normalized, transform.up).z;
         float sign = Mathf.Sign(cross);
 
         float horizontalMovement = InputHandler.HorizontalMovement;

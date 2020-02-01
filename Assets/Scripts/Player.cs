@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private DynamicMaterialColor[] thingsToColor;
+    private Color myColor;
 
-    // Update is called once per frame
-    void Update()
+    protected void Start()
     {
-        
+        myColor = DynamicMaterialColor.CreateRandomHue();
+        foreach (DynamicMaterialColor thing in thingsToColor)
+            thing.SetColor(myColor);
     }
 }

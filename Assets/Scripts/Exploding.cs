@@ -42,7 +42,7 @@ public class Exploding : MonoBehaviour
                 {
                     Vector2 difference = hit.collider.ClosestPoint(transform.position) - (Vector2)transform.position;
                     hit.collider.attachedRigidbody.AddForceAtPosition(difference * pushForce, transform.position);
-                    hit.collider.GetComponent<Damageable>().DealDamage(damageAmount);
+                    hit.collider.GetComponent<Damageable>()?.DealDamage(damageAmount);
                 }
             }
         }

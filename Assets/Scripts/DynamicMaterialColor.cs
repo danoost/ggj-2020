@@ -16,11 +16,16 @@ public class DynamicMaterialColor : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         mat = new Material(meshRenderer.material);
         meshRenderer.material = mat;
-        if (randomiseHue) RandomiseHue();
+        if (randomiseHue) SetColor(CreateRandomHue());
     }
 
-    private void RandomiseHue()
+    public static Color CreateRandomHue()
     {
-        mat.SetColor("_Color", Random.ColorHSV(0, 1, 1, 1, 1, 1));
+        return Random.ColorHSV(0, 1, 1, 1, 1, 1);
+    }
+
+    public void SetColor(Color color)
+    {
+        mat.SetColor("_Color", color);
     }
 }
