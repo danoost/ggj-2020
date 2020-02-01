@@ -7,6 +7,7 @@ public class Piece : MonoBehaviour
 {
     protected GameObject root;
     protected Rigidbody2D rootRb;
+    protected PlayerController rootController;
     protected Rigidbody2D selfRb;
     private Rigidbody2D selfRbBackup;
 
@@ -39,13 +40,15 @@ public class Piece : MonoBehaviour
 
     private GameObject FindRoot(GameObject other)
     {
-        return other.GetComponentInParent<Player>().gameObject;
+        return other.GetComponentInParent<PlayerController>().gameObject;
     }
 
     private void SetRoot(GameObject newRoot)
     {
         root = newRoot;
         rootRb = root.GetComponent<Rigidbody2D>();
+        rootController = root.GetComponent<PlayerController>();
+        Debug.Log(rootController);
         selfRbBackup = new Rigidbody().GetCopyOf(selfRb);
         Destroy(selfRb);
     }
@@ -54,6 +57,7 @@ public class Piece : MonoBehaviour
     {
         root = null;
         rootRb = null;
+        rootController = null;
         transform.parent = null;
         foreach (Transform child in transform)
         {

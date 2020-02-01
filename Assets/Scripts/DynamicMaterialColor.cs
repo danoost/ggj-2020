@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class DynamicMaterialColor : MonoBehaviour
 {
-    [SerializeField] private bool randomiseHue = true;
+    [SerializeField] private bool randomiseHue = false;
 
     private Material mat;
     private MeshRenderer meshRenderer;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         mat = new Material(meshRenderer.material);
@@ -26,6 +26,6 @@ public class DynamicMaterialColor : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        mat.SetColor("_Color", color);
+        meshRenderer.material.SetColor("_Color", color);
     }
 }

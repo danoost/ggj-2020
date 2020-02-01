@@ -19,15 +19,18 @@ public class Booster : Piece
 
     private void FixedUpdate()
     {
-        if (rootRb == null)
+        if (rootController == null)
             return;
+
+        Debug.Log(rootController.Movement);
+        Debug.Log(rootController.Interacting);
 
         bool flame = false;
 
         // Forward and backward pushiness
         float angleBetween = Quaternion.Angle(root.transform.rotation, transform.rotation);
         float cos = Mathf.Cos(Mathf.Deg2Rad * angleBetween);
-        float boostAmount = InputHandler.VerticalMovement * boostStrength * cos;
+        float boostAmount = rootController.Movement.y * boostStrength * cos;
 
         if (boostAmount > 0.3)
         {
@@ -39,7 +42,7 @@ public class Booster : Piece
         float cross = Vector3.Cross((transform.position - (Vector3)rootRb.worldCenterOfMass).normalized, transform.up).z;
         float sign = Mathf.Sign(cross);
 
-        float horizontalMovement = InputHandler.HorizontalMovement;
+        float horizontalMovement = rootController.Movement.x;
         if (Mathf.Abs(cross) > 0.05 && Mathf.Abs(horizontalMovement) > 0.05f && Mathf.Sign(horizontalMovement) == sign)
         {
             Boost(0.5f * boostStrength * Mathf.Abs(horizontalMovement));
@@ -54,7 +57,7 @@ public class Booster : Piece
     {
         if (amount < 0) return;
         amount *= transform.lossyScale.x / baseScale;
-        rootRb.AddForceAtPosition(amount * ((root.transform.up * Mathf.Sign(InputHandler.VerticalMovement)) + transform.up) / 2, transform.position);
+        rootRb.AddForceAtPosition(amount * ((root.transform.up * Mathf.Sign(rootController.Movement.y)) + transform.up) / 2, transform.position);
     }
 
     private void Boost(float amount)
