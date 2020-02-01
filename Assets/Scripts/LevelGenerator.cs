@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private GameObject boosterPrefab;
+    [SerializeField] private GameObject gunPrefab;
     [SerializeField] private GameObject asteroidPrefab;
     [SerializeField] private GameObject wallPrefab;
     [SerializeField] private GameObject playerPrefab;
@@ -23,6 +24,7 @@ public class LevelGenerator : MonoBehaviour
 
     [Header("Spawn Weights")]
     [SerializeField] private float boosterWeight;
+    [SerializeField] private float gunWeight;
     [SerializeField] private float asteroidWeight;
     [SerializeField] private float noneWeight;
 
@@ -62,8 +64,8 @@ public class LevelGenerator : MonoBehaviour
 
         // Create all the objects
         Random.InitState(seed);
-        float totalWeight = boosterWeight + asteroidWeight + noneWeight; // Weights are programmed weirdly but who cares lmao
-        weightList = new (float, GameObject)[] { (noneWeight, null), (boosterWeight, boosterPrefab), (asteroidWeight, asteroidPrefab) };
+        weightList = new (float, GameObject)[] { (noneWeight, null), (boosterWeight, boosterPrefab), (gunWeight, gunPrefab), (asteroidWeight, asteroidPrefab) };
+        float totalWeight = weightList.Sum(thing => thing.Item1);
 
         for (int i = 0; i < dimensions.x / spacing; i++)
         {

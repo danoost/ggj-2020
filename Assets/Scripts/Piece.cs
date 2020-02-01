@@ -49,7 +49,7 @@ public class Piece : MonoBehaviour
         rootRb = root.GetComponent<Rigidbody2D>();
         rootController = root.GetComponent<PlayerController>();
         Debug.Log(rootController);
-        selfRbBackup = new Rigidbody().GetCopyOf(selfRb);
+        selfRbBackup = new Rigidbody2D().GetCopyOf(selfRb);
         Destroy(selfRb);
     }
 

@@ -8,10 +8,6 @@ public class PlayerController : MonoBehaviour
     public Vector2 Movement { get; private set; }
     public bool Interacting { get; private set; }
 
-    private void Update()
-    {
-    }
-
     public void SetDevice(InputDevice device)
     {
         Debug.Log(device);
