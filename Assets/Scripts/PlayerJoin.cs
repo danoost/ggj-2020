@@ -9,6 +9,9 @@ public class PlayerJoin : MonoBehaviour
     [SerializeField] private InputActionAsset asset;
     [SerializeField] private Camera previewCamera;
 
+    [SerializeField] private Material[] playerMats;
+    [SerializeField] private Color[] playerColors;
+
     private InputAction interactAction;
     private List<NewPlayerInfo> playersJoined;
 

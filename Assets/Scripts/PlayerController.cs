@@ -1,42 +1,44 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputActionAsset asset;
     [SerializeField] private bool invertRotation = true;
 
+    private InputDevice device;
+
     public Vector2 Movement { get; private set; }
     public bool Interacting { get; private set; }
 
+    private void Update()
+    {
+        if (device == null) return;
+    }
+
     public void SetDevice(InputDevice device)
     {
+        this.device = device;
         Debug.Log(device);
-        asset.FindAction("InteractPressed").performed += context =>
+
+        var actionMap = asset.actionMaps[0].Clone();
+        actionMap.devices = new UnityEngine.InputSystem.Utilities.ReadOnlyArray<InputDevice>(new InputDevice[] { device });
+        actionMap.FindAction("InteractPressed").performed += context =>
         {
-            if (context.control.device.deviceId != device.deviceId)
-                return;
             Interacting = true;
         };
-        asset.FindAction("InteractReleased").performed += context =>
+        actionMap.FindAction("InteractReleased").performed += context =>
         {
-            if (context.control.device.deviceId != device.deviceId)
-                return; 
             Interacting = false;
         };
-        asset.FindAction("Move").performed += context =>
+        actionMap.FindAction("Move").performed += context =>
         {
-            if (context.control.device.deviceId != device.deviceId)
-                return;
             Movement = context.ReadValue<Vector2>() * new Vector2(invertRotation ? -1 : 1, 1);
         };
-        asset.FindAction("Move").canceled += context =>
+        actionMap.FindAction("Move").canceled += context =>
         {
-            if (context.control.device.deviceId != device.deviceId)
-                return;
             Movement = context.ReadValue<Vector2>() * new Vector2(invertRotation ? -1 : 1, 1);
         };
-
-        foreach (var actionMap in asset.actionMaps)
-            actionMap.Enable();
+        actionMap.Enable();
     }
 }

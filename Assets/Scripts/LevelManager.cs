@@ -111,6 +111,7 @@ public class LevelManager : MonoBehaviour
         newPlayer.GetComponent<PlayerVisual>().SetPlayerIndex(playerIndex);
         newPlayer.GetComponent<PlayerController>().SetDevice(pi.device);
         newPlayer.GetComponent<PlayerCamera>().SetConfig(totalPlayers, playerIndex);
+        newPlayer.GetComponent<PlayerStats>().SetStats(pi.color, playerIndex);
     }
 
     private GameObject CreateObject(float totalWeight, Vector2 position)

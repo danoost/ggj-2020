@@ -1,21 +1,37 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameFlowManager : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
-    [SerializeField] private PlayerJoin playerManager;
 
     public GameState state;
-
     public static GameFlowManager instance;
 
-    // Start is called before the first frame update
+    private List<PlayerStats> players;
+
     void Start()
     {
         instance = this;
         levelManager.GenerateLevel();
+        players = new List<PlayerStats>();
+    }
+
+    public void RegisterPlayer(PlayerStats player)
+    {
+        players.Add(player);
+    }
+
+    public void DeadPlayer(PlayerStats player)
+    {
+        players.Remove(player);
+        if (players.Count == 1)
+        {
+            var winner = players[0];
+            Debug.Log($"{winner.Index}");
+        }
     }
 }
 

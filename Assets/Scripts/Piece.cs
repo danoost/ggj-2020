@@ -83,7 +83,10 @@ public class Piece : MonoBehaviour
         rootController = null;
         transform.parent = null;
         gameObject.layer = LayerMask.NameToLayer("Spooky Ghosts");
-        selfRb = gameObject.AddComponent<Rigidbody2D>();
+        if ((selfRb = GetComponent<Rigidbody2D>()) == null)
+        {
+            selfRb = gameObject.AddComponent<Rigidbody2D>();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
