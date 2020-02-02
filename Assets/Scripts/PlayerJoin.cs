@@ -77,6 +77,8 @@ public class PlayerJoin : MonoBehaviour
             LevelManager.instance.SpawnPlayer(pi, playerIndex, playersJoined.Count);
             playerIndex++;
         });
+
+        SoundManager.PlayStartClip();
     }
 }
 

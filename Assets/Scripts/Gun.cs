@@ -73,5 +73,7 @@ public class Gun : Piece
         Destroy(newBullet, bulletLifetime);
 
         rootRb.AddForceAtPosition(baseRecoilForce * -transform.up * scaleModifier, bulletSpawnPoint);
+
+        SoundManager.PlayShootClip();
     }
 }

@@ -105,8 +105,10 @@ public class Piece : MonoBehaviour
                 {
                     SetRoot(newRoot);
                     transform.parent = collision.collider.transform;
+                    SoundManager.PlayAttachClip();
                 }
             }
         }
+
     }
 }

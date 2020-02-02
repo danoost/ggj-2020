@@ -33,6 +33,8 @@ public class GameFlowManager : MonoBehaviour
     public void RegisterPlayer(PlayerStats player)
     {
         players.Add(player);
+
+        SoundManager.PlayJoinClip();
     }
 
     public void DeadPlayer(PlayerStats player)
@@ -46,7 +48,11 @@ public class GameFlowManager : MonoBehaviour
             string hex = ColorUtility.ToHtmlStringRGB(winner.Color);
             winText.SetText($"<color=#{hex}>Player {PlayerJoin.instance.numbers[winner.Index]} Wins!</color>");
             StartCoroutine(Restart());
+
+            SoundManager.PlayWinClip();
         }
+
+        SoundManager.PlayDeathClip();
     }
 
     private IEnumerator Restart()
