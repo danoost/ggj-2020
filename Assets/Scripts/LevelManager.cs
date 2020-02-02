@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int borderIterations = 5;
     [SerializeField] private float randomness = 2;
     [SerializeField] private float spacing = 5;
+    [SerializeField] private bool randomiseSeed = true;
     [SerializeField] private int seed = 69;
     [SerializeField] private Vector2 playerCornerOffset = new Vector2(10, 10);
     [SerializeField] private Vector2 fullyInsideLevelBuffer = new Vector2(1, 1);
@@ -87,7 +88,10 @@ public class LevelManager : MonoBehaviour
         };
 
         // Create all the objects
-        Random.InitState(seed);
+        if (!randomiseSeed)
+        {
+            Random.InitState(seed);
+        }
         weightList = new (float, GameObject)[] { (noneWeight, null), (boosterWeight, boosterPrefab), (gunWeight, gunPrefab), (asteroidWeight, asteroidPrefab) };
         float totalWeight = weightList.Sum(thing => thing.Item1);
 

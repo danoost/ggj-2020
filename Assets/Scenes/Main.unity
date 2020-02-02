@@ -830,6 +830,7 @@ MonoBehaviour:
   borderIterations: 5
   randomness: 2
   spacing: 5
+  randomiseSeed: 1
   seed: 69
   playerCornerOffset: {x: 10, y: 10}
   fullyInsideLevelBuffer: {x: 1, y: 1}
@@ -845,11 +846,11 @@ MonoBehaviour:
   gunWeight: 5
   asteroidWeight: 0
   noneWeight: 8
-  minimumInterval: 5
-  maximumInterval: 10
+  minimumInterval: 2
+  maximumInterval: 4
   minimumDistance: 5
-  maximumDistance: 10
-  initialVelocity: 15
+  maximumDistance: 5
+  initialVelocity: 10
 --- !u!1 &817771819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,6 +1721,10 @@ MonoBehaviour:
   explodeClips:
   - {fileID: 8300000, guid: d4ee628b48dbcf443accf7e1639c8a49, type: 3}
   - {fileID: 8300000, guid: e38007f04ed60224ea360f94bf377bc7, type: 3}
+  - {fileID: 8300000, guid: 1a165942c0fc25341baae0459ab5455e, type: 3}
+  - {fileID: 8300000, guid: ad2b2437cf9fb044db1b263278c76bda, type: 3}
+  - {fileID: 8300000, guid: dbdeaccc9123faa4d806cc263d3c59f9, type: 3}
+  - {fileID: 8300000, guid: bdc78caa9e3e7614d8304c6b944edfad, type: 3}
   attachClips:
   - {fileID: 8300000, guid: 1e73abfabaf043248a0c3b8a6513abc6, type: 3}
   - {fileID: 8300000, guid: d40696d6967f44948808f6a6b3443958, type: 3}
