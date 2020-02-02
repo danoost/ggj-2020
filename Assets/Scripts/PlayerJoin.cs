@@ -14,6 +14,7 @@ public class PlayerJoin : MonoBehaviour
     [SerializeField] private TextMeshProUGUI startPrompt;
 
     public Material[] playerMats;
+    public Material[] playerBoosterMats;
     public Color[] playerColors;
     public string[] numbers;
 

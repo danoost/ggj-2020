@@ -54,7 +54,7 @@ public class Gun : Piece
 
     private void Shoot()
     {
-        Vector2 bulletSpawnPoint = transform.position + (transform.up * 2f * transform.lossyScale.x);
+        Vector2 bulletSpawnPoint = transform.position + (transform.up * 3.25f * transform.lossyScale.x);
         GameObject newBullet = Instantiate(bullet, bulletSpawnPoint, transform.rotation);
 
         newBullet.transform.localScale = transform.lossyScale * baseBulletScale;
@@ -65,6 +65,7 @@ public class Gun : Piece
             tr.startColor = rootVisual.Color;
             tr.endColor = new Color(rootVisual.Color.r, rootVisual.Color.g, rootVisual.Color.b, 0);
         }
+        newBullet.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", rootVisual.Color);
 
         newBullet.GetComponent<Exploding>().Damage = (int)(baseDamage * scaleModifier);
         newBullet.GetComponent<Exploding>().PushForceScale = scaleModifier;

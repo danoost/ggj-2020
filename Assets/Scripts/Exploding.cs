@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Exploding : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject explosion;
+
     public int Damage { get; set; } = 40;
 
     public float PushForceScale { get; set; } = 1f;
@@ -22,6 +25,7 @@ public class Exploding : MonoBehaviour
         if (collision.collider.CompareTag("Piece") || collision.collider.CompareTag("CommandCentre"))
         {
             Explode(Damage);
+            explosion.SetActive(true);
             Destroy(gameObject);
         }
     }
@@ -33,6 +37,7 @@ public class Exploding : MonoBehaviour
         {
             Destroy(tr.gameObject, tr.time);
         }
+        Destroy(explosion.gameObject, 5);
         gameObject.transform.DetachChildren();
     }
 

@@ -28,7 +28,13 @@ public class LevelManager : MonoBehaviour
     [Header("Play-Space Shrinking")]
     [SerializeField] private float shrinkStartTime;
     [SerializeField] private float shrinkRate;
-    [SerializeField] private Vector2 minimumDimensions = new Vector2(50, 30);
+    [SerializeField] private Vector2[] minimumDimensionsByPlayers =
+    {
+        new Vector2(15, 15),
+        new Vector2(20, 20),
+        new Vector2(25, 25),
+        new Vector2(30, 30)
+    };
 
     [Header("Spawn Weights")]
     [SerializeField] private float boosterWeight;
@@ -207,16 +213,16 @@ public class LevelManager : MonoBehaviour
         float aspectRatio = dimensions.x / dimensions.y;
         float wallHeight = 5;
 
-        while (dimensions.x > minimumDimensions.x || dimensions.y > minimumDimensions.y)
+        while (true)
         {
             yield return new WaitForFixedUpdate();
 
-            if (dimensions.x > minimumDimensions.x)
+            if (dimensions.x > minimumDimensionsByPlayers[GameFlowManager.instance.PlayerCount].x)
             {
                 lef.transform.position -= shrinkRate * lef.transform.up * aspectRatio * Time.deltaTime;
                 rig.transform.position -= shrinkRate * rig.transform.up * aspectRatio * Time.deltaTime;
             }
-            if (dimensions.y > minimumDimensions.y)
+            if (dimensions.y > minimumDimensionsByPlayers[GameFlowManager.instance.PlayerCount].y)
             {
                 top.transform.position -= shrinkRate * top.transform.up * Time.deltaTime;
                 bot.transform.position -= shrinkRate * bot.transform.up * Time.deltaTime;

@@ -760,13 +760,18 @@ MonoBehaviour:
   playerMats:
   - {fileID: 2100000, guid: fceeaab4604d1104b978ebc6c00e0e22, type: 2}
   - {fileID: 2100000, guid: d0ac74b6d94484040b2291f0c407717e, type: 2}
-  - {fileID: 2100000, guid: 45b1b2a9c51bd724eb300751170240fb, type: 2}
   - {fileID: 2100000, guid: eafcf19dd9210d8479d9fee73b491d4f, type: 2}
+  - {fileID: 2100000, guid: 45b1b2a9c51bd724eb300751170240fb, type: 2}
+  playerBoosterMats:
+  - {fileID: 2100000, guid: 3578382ba3873574c8f68bd73a444ca1, type: 2}
+  - {fileID: 2100000, guid: e76fb767af927154697fbc2bf9feed6e, type: 2}
+  - {fileID: 2100000, guid: 01fee4e553f0a944abef38a7efe1f189, type: 2}
+  - {fileID: 2100000, guid: dcb3b3bd614cd3f429c45d6df4d0d024, type: 2}
   playerColors:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.99810445, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 1, b: 0, a: 1}
   numbers: []
 --- !u!1 &767859527
 GameObject:
@@ -831,15 +836,19 @@ MonoBehaviour:
   freeRadius: 2
   shrinkStartTime: 60
   shrinkRate: 0.5
-  minimumDimensions: {x: 30, y: 30}
+  minimumDimensionsByPlayers:
+  - {x: 15, y: 15}
+  - {x: 20, y: 20}
+  - {x: 25, y: 25}
+  - {x: 30, y: 30}
   boosterWeight: 5
-  gunWeight: 3
+  gunWeight: 5
   asteroidWeight: 0
-  noneWeight: 10
-  minimumInterval: 10
-  maximumInterval: 20
-  minimumDistance: 10
-  maximumDistance: 15
+  noneWeight: 8
+  minimumInterval: 5
+  maximumInterval: 10
+  minimumDistance: 5
+  maximumDistance: 10
   initialVelocity: 15
 --- !u!1 &817771819
 GameObject:
