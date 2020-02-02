@@ -33,8 +33,6 @@ public class GameFlowManager : MonoBehaviour
     public void RegisterPlayer(PlayerStats player)
     {
         players.Add(player);
-
-        SoundManager.PlayJoinClip();
     }
 
     public void DeadPlayer(PlayerStats player)
@@ -51,8 +49,10 @@ public class GameFlowManager : MonoBehaviour
 
             SoundManager.PlayWinClip();
         }
-
-        SoundManager.PlayDeathClip();
+        else
+        {
+            SoundManager.PlayDeathClip();
+        }
     }
 
     private IEnumerator Restart()

@@ -55,7 +55,7 @@ public class SoundManager : MonoBehaviour
     {
         if (clips.Length > 0)
         {
-            int index = Random.Range(0, clips.Length - 1);
+            int index = Random.Range(0, clips.Length);
             instance.source.PlayOneShot(clips[index], 1f);
         }
         else

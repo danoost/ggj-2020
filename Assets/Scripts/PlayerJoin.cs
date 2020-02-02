@@ -59,7 +59,10 @@ public class PlayerJoin : MonoBehaviour
             {
                 startPrompt.gameObject.SetActive(true);
             }
-        } else
+
+            SoundManager.PlayJoinClip();
+        } 
+        else
         {
             StartGame();
         }

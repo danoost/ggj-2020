@@ -217,12 +217,12 @@ public class LevelManager : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
 
-            if (dimensions.x > minimumDimensionsByPlayers[GameFlowManager.instance.PlayerCount].x)
+            if (dimensions.x > minimumDimensionsByPlayers[GameFlowManager.instance.PlayerCount - 1].x)
             {
                 lef.transform.position -= shrinkRate * lef.transform.up * aspectRatio * Time.deltaTime;
                 rig.transform.position -= shrinkRate * rig.transform.up * aspectRatio * Time.deltaTime;
             }
-            if (dimensions.y > minimumDimensionsByPlayers[GameFlowManager.instance.PlayerCount].y)
+            if (dimensions.y > minimumDimensionsByPlayers[GameFlowManager.instance.PlayerCount - 1].y)
             {
                 top.transform.position -= shrinkRate * top.transform.up * Time.deltaTime;
                 bot.transform.position -= shrinkRate * bot.transform.up * Time.deltaTime;
