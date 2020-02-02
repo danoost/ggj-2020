@@ -53,7 +53,14 @@ public class SoundManager : MonoBehaviour
 
     private static void PlayRandomClip(AudioClip[] clips)
     {
-        int index = Random.Range(0, clips.Length - 1);
-        instance.source.PlayOneShot(clips[index]);
+        if (clips.Length > 0)
+        {
+            int index = Random.Range(0, clips.Length - 1);
+            instance.source.PlayOneShot(clips[index], 1f);
+        }
+        else
+        {
+            Debug.Log("Clips missing");
+        }
     }
 }
