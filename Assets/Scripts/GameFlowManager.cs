@@ -17,6 +17,11 @@ public class GameFlowManager : MonoBehaviour
 
     private List<PlayerStats> players;
 
+    public int PlayerCount
+    {
+        get { return players.Count; }
+    }
+
     void Start()
     {
         instance = this;

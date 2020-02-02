@@ -836,15 +836,19 @@ MonoBehaviour:
   freeRadius: 2
   shrinkStartTime: 60
   shrinkRate: 0.5
-  minimumDimensions: {x: 30, y: 30}
+  minimumDimensionsByPlayers:
+  - {x: 15, y: 15}
+  - {x: 20, y: 20}
+  - {x: 25, y: 25}
+  - {x: 30, y: 30}
   boosterWeight: 5
-  gunWeight: 3
+  gunWeight: 5
   asteroidWeight: 0
-  noneWeight: 10
-  minimumInterval: 10
-  maximumInterval: 20
-  minimumDistance: 10
-  maximumDistance: 15
+  noneWeight: 8
+  minimumInterval: 5
+  maximumInterval: 10
+  minimumDistance: 5
+  maximumDistance: 10
   initialVelocity: 15
 --- !u!1 &817771819
 GameObject:
