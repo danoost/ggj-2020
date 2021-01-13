@@ -63,7 +63,7 @@ public class Piece : MonoBehaviour
         rootRb = root.GetComponent<Rigidbody2D>();
         rootController = root.GetComponent<PlayerController>();
         rootVisual = root.GetComponent<PlayerVisual>();
-        selfRbBackup = new Rigidbody2D().GetCopyOf(selfRb);
+        //selfRbBackup = new Rigidbody2D().GetCopyOf(selfRb);
         Destroy(selfRb);
         gameObject.layer = LayerMask.NameToLayer("Default");
     }

@@ -30,11 +30,15 @@ public class PlayerVisual : MonoBehaviour
         if (myDamage.currentHealth != currentHealth)
         {
             currentHealth = myDamage.currentHealth;
-            text.SetText("");
+
+            string newText = "";
+
             for (int i = 0; i < currentHealth; i++)
             {
-                text.SetText(text.text + $"<sprite=\"heart\" color=\"#{ColorUtility.ToHtmlStringRGB(Color)}\" index=0>");
+                newText += $"<sprite=\"heart\" color=\"#{ColorUtility.ToHtmlStringRGB(Color)}\" index=0>";
             }
+
+            text.SetText(newText);
         }
     }
 }
